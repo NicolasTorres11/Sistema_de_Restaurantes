@@ -24,6 +24,7 @@ MY_APPS = [
 
 THRID_PARTY_APPS = [
     'rest_framework',
+    'drf_yasg',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + MY_APPS + THRID_PARTY_APPS
