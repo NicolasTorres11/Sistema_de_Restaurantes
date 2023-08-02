@@ -18,13 +18,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/penat/OneDrive/Documentos/GitHub/Sistema_de_Restaurantes/backend/manage.py"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/penat/OneDrive/Documentos/GitHub/Sistema_de_Restaurantes/backend/manage.py&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="RunServer" type="PythonConfigurationType" factoryName="Python">
       <module name="Sistema_de_Restaurantes" />
@@ -34,7 +34,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\penat\AppData\Local\Programs\Python\Python311\python.exe" />
-      <option name="SDK_NAME" value="Python 3.11" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
