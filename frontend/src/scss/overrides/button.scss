@@ -1,5 +1,11 @@
 .ui.primary.button {
-    background-color: #527fee;
-    color: black;
+    background-color: #173c99;
+    color: aliceblue;
     border-radius: 8px;
+    outline: none; /* Evita el contorno predeterminado al hacer clic */
+
+    &:hover {
+        color: black;
+        background-color: #527fee;
+    }
 }
