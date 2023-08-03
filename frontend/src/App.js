@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navigation} from "./routers";
+import {Navigation} from "./routes";
 
 
 export default function App() {
