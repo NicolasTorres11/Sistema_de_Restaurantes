@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export function Home() {
   return (
     <div>
-      <p>Esta es la Home de los clientes</p>
+      <h1>Home del Cliente</h1>
     </div>
-  )
+  );
 }
