@@ -1,4 +1,6 @@
 import React, { createContext } from "react";
+import { setToken } from "../api/token";
+import { useUser } from "../hooks";
 
 export const AuthContext = createContext({
   auth: undefined,
@@ -9,8 +11,12 @@ export const AuthContext = createContext({
 export function AuthProvider(props) {
   const { children } = props;
 
+  const { getMe } = useUser();
+
   const login = async (token) => {
-    console.log("Context Login-->", token);
+    setToken(token);
+    const me = await getMe(token);
+    console.log(me);
   };
 
   const valueContext = {
