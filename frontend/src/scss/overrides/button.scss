@@ -8,4 +8,9 @@
         color: black;
         background-color: #527fee;
     }
+
+    &:focus {
+        background-color: #173c99 !important;
+        color: aliceblue;
+    }
 }
