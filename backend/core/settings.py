@@ -1,4 +1,5 @@
 from pathlib import Path
+import datetime
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -7,7 +8,7 @@ SECRET_KEY = 'django-insecure-^bf&b(@%6e-zk$l&^4327^5(c0&n+*&lw6%r%f=*asj5j(h&h9
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", '127.0.0.1']
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -24,6 +25,7 @@ MY_APPS = [
 
 THRID_PARTY_APPS = [
     'rest_framework',
+    'corsheaders',
     'drf_yasg',
 ]
 
@@ -32,6 +34,7 @@ INSTALLED_APPS = DJANGO_APPS + MY_APPS + THRID_PARTY_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -84,7 +87,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -98,8 +101,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFTIME': datetime.timedelta(days=120)
 }
