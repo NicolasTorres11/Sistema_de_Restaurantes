@@ -1,2 +1,2 @@
 export * from "./LoginForm"
-export * from "./TopMenuAdmin"
+export * from "./TopMenu"
