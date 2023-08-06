@@ -21,7 +21,6 @@ function MenuLeft(props) {
 
   const { auth } = useAuth();
 
-  console.log(auth);
   return (
     <Menu fixed="left" borderless className="side" vertical>
       <Menu.Item
