@@ -5,7 +5,6 @@ import "./TopMenu.scss";
 
 export function TopMenu() {
   const { auth, logout } = useAuth();
-  console.log(auth);
 
   const renderName = () => {
     if (auth.me?.first_name) {
@@ -20,9 +19,9 @@ export function TopMenu() {
         <p>SR Admin</p>
       </Menu.Item>
 
-      <Menu.Menu position="right">
-        <Menu.Item>Bienvenido, {renderName()}</Menu.Item>
-        <Menu.Item onClick={logout}>
+      <Menu.Menu className="top-menu-admin__navbar" position="right">
+        <Menu.Item className="top-menu-admin__navbar__name">Bienvenido, {renderName()}</Menu.Item>
+        <Menu.Item className="top-menu-admin__navbar__logout" onClick={logout}>
           <Icon name="sign out" />
         </Menu.Item>
       </Menu.Menu>
