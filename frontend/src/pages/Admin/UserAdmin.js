@@ -15,7 +15,7 @@ export function UserAdmin() {
         btnTitle="Agregar Usuario"
         btnTitleTwo="Desactivar Usuario"
       />
-      <h1>CONTROL DE USUARIOS</h1>
+      <h1>Control De Usuarios</h1>
     </div>
   );
 }
