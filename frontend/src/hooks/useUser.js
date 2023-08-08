@@ -18,10 +18,10 @@ export function useUser() {
     }
   };
 
-  const getUsers = () => {
+  const getUsers = async () => {
     try {
       setLoading(true);
-      const response = getUserApi(auth.token);
+      const response = await getUserApi(auth.token);
       setLoading(false);
       setUsers(response);
     } catch (error) {
