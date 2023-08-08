@@ -1,0 +1,22 @@
+.add-edit-admin {
+
+    &__active,
+    &__staff {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .custom-checbox {
+            .ui.checkbox input:checked~.toggle:before {
+                margin-right: 20px;
+                background-color: red;
+            }
+        }
+
+    }
+
+    .ui.primary.button {
+        margin-top: 50px;
+    }
+}
