@@ -4,7 +4,7 @@ import { map } from "lodash";
 import "./TableUsers.scss";
 
 export function TableUsers(props) {
-  const { users } = props;
+  const { users, updateUSer } = props;
   return (
     <Table className="table-users-admin">
       <Table.Header>
@@ -32,7 +32,7 @@ export function TableUsers(props) {
             <Table.Cell className="status">
               {user.is_staff ? <Icon name="check" /> : <Icon name="close" />}
             </Table.Cell>
-            <Actions user={user} />
+            <Actions user={user} updateUSer={updateUSer} />
           </Table.Row>
         ))}
       </Table.Body>
@@ -41,10 +41,10 @@ export function TableUsers(props) {
 }
 
 function Actions(props) {
-  const { user } = props;
+  const { user, updateUSer } = props;
   return (
     <Table.Cell className="status" textAlign="right">
-      <Button icon onClick={() => console.log(`Editar a ${user.username}`)}>
+      <Button icon onClick={() => updateUSer(user)}>
         <Icon name="edit" />
       </Button>
       <Button icon onClick={() => console.log(`Desactivar a ${user.username}`)}>

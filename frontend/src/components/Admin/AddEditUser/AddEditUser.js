@@ -6,15 +6,16 @@ import { useUser } from "../../../hooks";
 import "./AddEditUser.scss";
 
 export function AddEditUser(props) {
-  const { onClose, onRefecth } = props;
+  const { onClose, onRefecth, user } = props;
   const { addUser } = useUser();
   const formik = useFormik({
-    initialValues: initialValues(),
+    initialValues: initialValues(user),
     validationSchema: Yup.object(newSchema()),
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
-        await addUser(formValue);
+        if (user) console.log("Actualizar Usuario");
+        else await addUser(formValue);
         onRefecth();
         onClose();
       } catch (error) {
@@ -82,17 +83,22 @@ export function AddEditUser(props) {
         Usuario Administrador
       </div>
 
-      <Button type="submit" primary fluid content="Registrar" />
+      <Button
+        type="submit"
+        primary
+        fluid
+        content={user ? "Editar" : "Registrar"}
+      />
     </Form>
   );
 }
 
-function initialValues() {
+function initialValues(data) {
   return {
-    username: "",
-    email: "",
-    first_name: "",
-    last_name: "",
+    username: data?.username || "",
+    email: data?.email || "",
+    first_name: data?.first_name || "",
+    last_name: data?.last_name || "",
     password: "",
     is_active: true,
     is_staff: false,
