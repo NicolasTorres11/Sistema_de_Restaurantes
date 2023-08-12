@@ -3,6 +3,7 @@ from django.urls import path, include
 from rest_framework.authentication import authenticate
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from categories.api.routers import urlpatterns
 
 
 schema_view = get_schema_view(
@@ -21,6 +22,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('users.api.routers')),
+    path("api/", include('categories.api.routers')),
     path('docs/', schema_view.with_ui('swagger',
          cache_timeout=0), name='schema-swager-view'),
     path("readocs/", schema_view.with_ui('redoc',

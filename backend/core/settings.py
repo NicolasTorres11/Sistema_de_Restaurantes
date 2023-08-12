@@ -1,5 +1,6 @@
 from pathlib import Path
 import datetime
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,6 +22,7 @@ DJANGO_APPS = [
 
 MY_APPS = [
     'users',
+    'categories',
 ]
 
 THRID_PARTY_APPS = [
@@ -97,6 +99,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = 'uploads/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
@@ -114,3 +120,4 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFTIME': datetime.timedelta(days=120)
 }
+
