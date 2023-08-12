@@ -35,7 +35,7 @@ export function AddEditUser(props) {
       />
       <Form.Input
         name="email"
-        placeholder="Correo Electrónico"
+        placeholder="Correo Electrónicoooooooo"
         value={formik.values.email}
         onChange={formik.handleChange}
         error={formik.errors.email}
