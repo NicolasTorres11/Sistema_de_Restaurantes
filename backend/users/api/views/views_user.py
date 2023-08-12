@@ -16,6 +16,19 @@ class UserAPIView(ModelViewSet):
     def create(self, request, *args, **kwargs):
         request.data['password'] = make_password(request.data['password'])
         return super().create(request, *args, **kwargs)
+    
+    def destroy(self, request, pk, format=None):
+        user = User.objects.filter(id=pk).first()
+        if user:
+            user.is_active = False
+            user.save()
+            return Response({
+                'message': 'Usuario Desactivado Correctamente'
+            }, status=status.HTTP_200_OK)
+        return Response({
+            'error': 'No existe el Usuario'
+        }, status=status.HTTP_400_BAD_REQUEST)
+        
 
     def partial_update(self, request, *args, **kwargs):
         password = request.data['password']
@@ -32,3 +45,4 @@ class UserView(APIView):
     def get(self, request, *args, **kwargs):
         serializer = UserSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Loader } from "semantic-ui-react";
+import { Confirm, Loader } from "semantic-ui-react";
 import { useUser } from "../../hooks";
 import { HeaderPage, AddEditUser } from "../../components/Admin";
 import { TableUsers } from "../../components/Admin/Users";
@@ -11,7 +11,7 @@ export function UserAdmin() {
   const [TitleModal, setTitleModal] = useState(null);
   const [ContentModal, setContentModal] = useState(null);
   const [refetch, setrefetch] = useState(false);
-  const { loading, users, getUsers } = useUser();
+  const { loading, users, getUsers, deleteUser } = useUser();
   useEffect(() => {
     getUsers();
   }, [refetch]);
@@ -33,8 +33,19 @@ export function UserAdmin() {
       <AddEditUser onClose={OpenCloseModal} onRefecth={onRefecth} user={data} />
     );
     OpenCloseModal();
-    console.log("Editar");
-    console.log(data);
+  };
+
+  const onDeleteUser = async (data) => {
+    const result = window.confirm(`¿Desactivar Usuario ${data.email}`);
+    if (result) {
+      try {
+        console.log("entra");
+        await deleteUser(data.id);
+        onRefecth();
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   return (
@@ -52,7 +63,11 @@ export function UserAdmin() {
           Cargando...
         </Loader>
       ) : (
-        <TableUsers users={users} updateUSer={updateUSer} />
+        <TableUsers
+          users={users}
+          updateUSer={updateUSer}
+          onDeleteUser={onDeleteUser}
+        />
       )}
 
       <ModalBasic

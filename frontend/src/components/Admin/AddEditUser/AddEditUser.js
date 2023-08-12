@@ -7,14 +7,14 @@ import "./AddEditUser.scss";
 
 export function AddEditUser(props) {
   const { onClose, onRefecth, user } = props;
-  const { addUser } = useUser();
+  const { addUser, updateUser } = useUser();
   const formik = useFormik({
     initialValues: initialValues(user),
-    validationSchema: Yup.object(newSchema()),
+    validationSchema: Yup.object(user ? updateSchema() : newSchema()),
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
-        if (user) console.log("Actualizar Usuario");
+        if (user) await updateUser(user.id, formValue);
         else await addUser(formValue);
         onRefecth();
         onClose();
@@ -100,8 +100,8 @@ function initialValues(data) {
     first_name: data?.first_name || "",
     last_name: data?.last_name || "",
     password: "",
-    is_active: true,
-    is_staff: false,
+    is_active: data?.is_active ? true : false,
+    is_staff: data?.is_staff ? true : false,
   };
 }
 
@@ -112,6 +112,18 @@ function newSchema() {
     first_name: Yup.string(),
     last_name: Yup.string(),
     password: Yup.string().required(true),
+    is_active: Yup.bool().required(true),
+    is_staff: Yup.bool().required(true),
+  };
+}
+
+function updateSchema() {
+  return {
+    username: Yup.string().required(true),
+    email: Yup.string().email(true).required(true),
+    first_name: Yup.string(),
+    last_name: Yup.string(),
+    password: Yup.string(),
     is_active: Yup.bool().required(true),
     is_staff: Yup.bool().required(true),
   };
