@@ -54,6 +54,7 @@ export function UserAdmin() {
         title="Usuarios"
         btnTitle="Agregar Usuario"
         btnClick={addUser}
+        icon="user"
         /*
         btnTitleTwo="Desactivar Usuario"
         */

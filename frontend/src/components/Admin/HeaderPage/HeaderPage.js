@@ -3,7 +3,7 @@ import { Button, Icon } from "semantic-ui-react";
 import "./HeaderPage.scss";
 
 export function HeaderPage(props) {
-  const { title, btnTitle, btnClick, btnTitleTwo, btnClickTwo } = props;
+  const { title, btnTitle, btnClick, btnTitleTwo, btnClickTwo, icon } = props;
 
   return (
     <div className="header-page-admin">
@@ -11,12 +11,12 @@ export function HeaderPage(props) {
       <div>
         {btnTitle && (
           <Button color="linkedin" onClick={btnClick}>
-            <Icon name="user" /> {btnTitle}
+            <Icon name={icon} /> {btnTitle}
           </Button>
         )}
         {btnTitleTwo && (
           <Button negative onClick={btnClickTwo}>
-            <Icon name="user delete" /> {btnTitleTwo}
+            <Icon name={icon} /> {btnTitleTwo}
           </Button>
         )}
       </div>
