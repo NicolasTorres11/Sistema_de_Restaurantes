@@ -12,6 +12,7 @@ export function TableCategory(props) {
           <Table.HeaderCell>Imagen</Table.HeaderCell>
           <Table.HeaderCell>Categoria</Table.HeaderCell>
           <Table.HeaderCell>Estdo</Table.HeaderCell>
+          <Table.HeaderCell></Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -20,9 +21,32 @@ export function TableCategory(props) {
             <Table.Cell width={2}>
               <Image src={category.image} />
             </Table.Cell>
+            <Table.Cell>{category.title}</Table.Cell>
+            <Table.Cell className="status">
+              {category.is_active ? (
+                <Icon name="check" />
+              ) : (
+                <Icon name="close" />
+              )}
+            </Table.Cell>
+            <Actions categories={category} />
           </Table.Row>
         ))}
       </Table.Body>
     </Table>
+  );
+}
+
+function Actions(props) {
+  const { categories } = props;
+  return (
+    <Table.Cell className="status" textAlign="right">
+      <Button icon onClick={() => console.log("Actualizar")}>
+        <Icon name="edit" />
+      </Button>
+      <Button icon onClick={() => console.log("Desactivar")}>
+        <Icon name="delete" />
+      </Button>
+    </Table.Cell>
   );
 }

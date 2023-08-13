@@ -10,9 +10,9 @@ class CategoryAPIViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self, pk=None):
         if pk is None:
-            return self.serializer_class().Meta.model.objects.filter(state=True)
+            return self.serializer_class().Meta.model.objects.filter(is_active=True)
         else: 
-            return self.serializer_class().Meta.model.objects.filter(state=True, id=pk).first()
+            return self.serializer_class().Meta.model.objects.filter(is_active=True, id=pk).first()
         
     def list(self, request, *args, **kwargs):
         serializer = self.serializer_class(self.get_queryset(), many=True)
