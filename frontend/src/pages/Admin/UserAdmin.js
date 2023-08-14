@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Confirm, Loader } from "semantic-ui-react";
+import { Loader } from "semantic-ui-react";
 import { useUser } from "../../hooks";
 import { HeaderPage, AddEditUser } from "../../components/Admin";
 import { TableUsers } from "../../components/Admin/Users";
