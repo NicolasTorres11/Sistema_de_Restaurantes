@@ -1,19 +1,23 @@
 from rest_framework import viewsets, status
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.response import Response
 from categories.api.serializers.category_serializer import CategorySerializer
+from categories.models import Category
 
 
 class CategoryAPIViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = CategorySerializer
-    
-    def get_queryset(self, pk=None):
-        if pk is None:
-            return self.serializer_class().Meta.model.objects.filter(is_active=True)
-        else: 
-            return self.serializer_class().Meta.model.objects.filter(is_active=True, id=pk).first()
-        
+    queryset = Category.objects.all()
+
     def list(self, request, *args, **kwargs):
-        serializer = self.serializer_class(self.get_queryset(), many=True)
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Categoria Creada Exitosamente'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

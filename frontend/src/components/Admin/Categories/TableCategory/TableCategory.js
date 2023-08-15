@@ -26,7 +26,7 @@ export function TableCategory(props) {
               {category.is_active ? (
                 <Icon name="check" />
               ) : (
-                <Icon name="close" />
+                <Icon name="delete" />
               )}
             </Table.Cell>
             <Actions categories={category} />
@@ -41,10 +41,16 @@ function Actions(props) {
   const { categories } = props;
   return (
     <Table.Cell className="status" textAlign="right">
-      <Button icon onClick={() => console.log("Actualizar")}>
+      <Button
+        icon
+        onClick={() => console.log(`Actualizar ${categories.title} `)}
+      >
         <Icon name="edit" />
       </Button>
-      <Button icon onClick={() => console.log("Desactivar")}>
+      <Button
+        icon
+        onClick={() => console.log(`Desactivar ${categories.title}`)}
+      >
         <Icon name="delete" />
       </Button>
     </Table.Cell>
