@@ -18,6 +18,7 @@ export async function createCategoryApi(data, token) {
 
     formData.append("image", data.image);
     formData.append("title", data.title);
+    formData.append("is_active", data.is_active);
 
     const url = `${BASE_API}api/Categories/`;
     const params = {
