@@ -6,7 +6,8 @@ import * as Yup from "yup";
 import { useCategory } from "../../../../hooks/useCategory";
 import "./AddEditCategories.scss";
 
-export function AddEditCategories() {
+export function AddEditCategories(props) {
+  const { onClose, onRefetch } = props;
   const [previewImage, setpreviewImage] = useState(null);
 
   const { createCategories } = useCategory();
@@ -18,8 +19,8 @@ export function AddEditCategories() {
     onSubmit: async (formValue) => {
       try {
         await createCategories(formValue);
-        console.log("Formulario Enviado");
-        console.log(formValue);
+        onRefetch();
+        onClose();
       } catch (error) {
         console.error(error);
       }

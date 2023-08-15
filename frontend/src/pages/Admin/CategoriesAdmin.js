@@ -13,16 +13,20 @@ export function CategoriesAdmin() {
   const [titleModal, settitleModal] = useState(null);
   const [contentModal, setcontentModal] = useState(null);
   const { loading, categories, getCategories } = useCategory();
+  const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {
     getCategories();
-  }, []);
+  }, [refetch]);
 
   const openCloseModal = () => setshowModal((prev) => !prev);
+  const onRefetch = () => setRefetch((prev) => !prev);
 
   const addCategory = () => {
     settitleModal("Agregar Categoria");
-    setcontentModal(<AddEditCategories />);
+    setcontentModal(
+      <AddEditCategories onClose={openCloseModal} onRefetch={onRefetch} />
+    );
     openCloseModal();
   };
   return (
