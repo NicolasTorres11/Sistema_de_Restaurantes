@@ -3,18 +3,26 @@ import { Form, Image, Button, Checkbox } from "semantic-ui-react";
 import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useCategory } from "../../../../hooks/useCategory";
 import "./AddEditCategories.scss";
 
 export function AddEditCategories() {
   const [previewImage, setpreviewImage] = useState(null);
 
+  const { createCategories } = useCategory();
+
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(newSchema()),
     validateOnChange: false,
-    onSubmit: (formValue) => {
-      console.log("Formulario Enviado");
-      console.log(formValue);
+    onSubmit: async (formValue) => {
+      try {
+        await createCategories(formValue);
+        console.log("Formulario Enviado");
+        console.log(formValue);
+      } catch (error) {
+        console.error(error);
+      }
     },
   });
 
@@ -67,15 +75,15 @@ export function AddEditCategories() {
 function initialValues() {
   return {
     title: "",
-    is_active: true,
     image: "",
+    is_active: true,
   };
 }
 
 function newSchema() {
   return {
     title: Yup.string().required(true),
-    is_active: Yup.bool().required(true),
     image: Yup.string().required(true),
+    is_active: Yup.bool().required(true),
   };
 }

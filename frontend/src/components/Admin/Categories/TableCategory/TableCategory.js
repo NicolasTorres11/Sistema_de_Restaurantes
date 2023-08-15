@@ -11,7 +11,7 @@ export function TableCategory(props) {
         <Table.Row>
           <Table.HeaderCell>Imagen</Table.HeaderCell>
           <Table.HeaderCell>Categoria</Table.HeaderCell>
-          <Table.HeaderCell>Estdo</Table.HeaderCell>
+          <Table.HeaderCell>Estado</Table.HeaderCell>
           <Table.HeaderCell></Table.HeaderCell>
         </Table.Row>
       </Table.Header>
