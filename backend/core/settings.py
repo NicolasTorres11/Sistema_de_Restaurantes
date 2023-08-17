@@ -120,4 +120,3 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFTIME': datetime.timedelta(days=120)
 }
-
