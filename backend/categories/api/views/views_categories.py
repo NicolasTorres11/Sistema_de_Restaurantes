@@ -21,3 +21,16 @@ class CategoryAPIViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response({'message': 'Categoria Creada Exitosamente'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def destroy(self, request, pk, format=None):
+        category = Category.objects.filter(id=pk).first()
+        if category:
+            category.is_active = False
+            category.save()
+            return Response({
+                'message': 'Categoria Desactivada'
+            }, status=status.HTTP_200_OK)
+        return Response({
+            'error': 'Categoria no encontrada'
+        }, status=status.HTTP_404_NOT_FOUND)
+            

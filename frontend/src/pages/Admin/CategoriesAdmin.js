@@ -7,6 +7,7 @@ import {
   TableCategory,
 } from "../../components/Admin";
 import { useCategory } from "../../hooks/useCategory";
+import { date } from "yup";
 
 export function CategoriesAdmin() {
   const [showModal, setshowModal] = useState(false);
@@ -29,6 +30,19 @@ export function CategoriesAdmin() {
     );
     openCloseModal();
   };
+
+  const updateCategory = (data) => {
+    settitleModal("Actulizar Categoria");
+    setcontentModal(
+      <AddEditCategories
+        onClose={openCloseModal}
+        onRefetch={onRefetch}
+        categories={data}
+      />
+    );
+    openCloseModal();
+  };
+
   return (
     <div>
       <HeaderPage
@@ -42,7 +56,10 @@ export function CategoriesAdmin() {
           Cargando...
         </Loader>
       ) : (
-        <TableCategory categories={categories} />
+        <TableCategory
+          categories={categories}
+          updateCategory={updateCategory}
+        />
       )}
       <ModalBasic
         show={showModal}
