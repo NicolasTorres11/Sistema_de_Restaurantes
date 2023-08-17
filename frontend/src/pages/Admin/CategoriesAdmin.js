@@ -7,7 +7,6 @@ import {
   TableCategory,
 } from "../../components/Admin";
 import { useCategory } from "../../hooks/useCategory";
-import { date } from "yup";
 
 export function CategoriesAdmin() {
   const [showModal, setshowModal] = useState(false);
