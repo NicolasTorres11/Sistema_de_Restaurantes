@@ -4,7 +4,7 @@ import { map } from "lodash";
 import "./TableCategory.scss";
 
 export function TableCategory(props) {
-  const { categories } = props;
+  const { categories, updateCategory } = props;
   return (
     <Table className="table-categories-admin">
       <Table.Header>
@@ -29,7 +29,7 @@ export function TableCategory(props) {
                 <Icon name="delete" />
               )}
             </Table.Cell>
-            <Actions categories={category} />
+            <Actions categories={category} updateCategory={updateCategory} />
           </Table.Row>
         ))}
       </Table.Body>
@@ -38,13 +38,10 @@ export function TableCategory(props) {
 }
 
 function Actions(props) {
-  const { categories } = props;
+  const { categories, updateCategory } = props;
   return (
     <Table.Cell className="status" textAlign="right">
-      <Button
-        icon
-        onClick={() => console.log(`Actualizar ${categories.title} `)}
-      >
+      <Button icon onClick={() => updateCategory(categories)}>
         <Icon name="edit" />
       </Button>
       <Button

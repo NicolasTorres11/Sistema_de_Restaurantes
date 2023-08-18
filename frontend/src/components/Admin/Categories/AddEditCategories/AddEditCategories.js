@@ -7,18 +7,18 @@ import { useCategory } from "../../../../hooks/useCategory";
 import "./AddEditCategories.scss";
 
 export function AddEditCategories(props) {
-  const { onClose, onRefetch } = props;
-  const [previewImage, setpreviewImage] = useState(null);
-
-  const { createCategories } = useCategory();
+  const { onClose, onRefetch, categories } = props;
+  const [previewImage, setpreviewImage] = useState(categories?.image);
+  const { createCategories, updateCategories } = useCategory();
 
   const formik = useFormik({
-    initialValues: initialValues(),
-    validationSchema: Yup.object(newSchema()),
+    initialValues: initialValues(categories),
+    validationSchema: Yup.object(categories ? updateSchema() : newSchema()),
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
-        await createCategories(formValue);
+        if (categories) updateCategories(categories.id, formValue);
+        else await createCategories(formValue);
         onRefetch();
         onClose();
       } catch (error) {
@@ -54,7 +54,7 @@ export function AddEditCategories(props) {
         color={formik.errors.image && "red"}
         {...getRootProps()}
       >
-        Cargar Imagen
+        {previewImage ? "Actualizar Imagen" : "Agregar Imagen"}
       </Button>
       <input {...getInputProps()} />
       <Image src={previewImage} fluid />
@@ -68,16 +68,21 @@ export function AddEditCategories(props) {
         />
         Activo
       </div>
-      <Button type="submit" primary fluid content="Agregar" />
+      <Button
+        type="submit"
+        primary
+        fluid
+        content={categories ? "Actualizar Categoria" : "Agregar Categoria"}
+      />
     </Form>
   );
 }
 
-function initialValues() {
+function initialValues(data) {
   return {
-    title: "",
+    title: data?.title || "",
     image: "",
-    is_active: true,
+    is_active: data?.is_active ? true : false,
   };
 }
 
@@ -86,5 +91,13 @@ function newSchema() {
     title: Yup.string().required(true),
     image: Yup.string().required(true),
     is_active: Yup.bool().required(true),
+  };
+}
+
+function updateSchema() {
+  return {
+    title: Yup.string().required(true),
+    image: Yup.string(),
+    is_active: Yup.bool(),
   };
 }

@@ -13,5 +13,5 @@ export function ModalBasic(props) {
 }
 
 ModalBasic.defaultProps = {
-  size: "small",
+  size: "tiny",
 };
