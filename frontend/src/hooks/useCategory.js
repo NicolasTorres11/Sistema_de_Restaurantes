@@ -3,6 +3,7 @@ import {
   getCategoriesApi,
   createCategoryApi,
   updateCategoryApi,
+  deleteCategoryApi,
 } from "../api/categories";
 import { useAuth } from "./";
 
@@ -45,6 +46,17 @@ export function useCategory() {
     }
   };
 
+  const deleteCategory = async (id) => {
+    try {
+      setloading(true);
+      await deleteCategoryApi(id, auth.token);
+      setloading(false);
+    } catch (error) {
+      setloading(false);
+      setError(error);
+    }
+  };
+
   return {
     loading,
     categories,
@@ -52,5 +64,6 @@ export function useCategory() {
     getCategories,
     createCategories,
     updateCategories,
+    deleteCategory,
   };
 }
