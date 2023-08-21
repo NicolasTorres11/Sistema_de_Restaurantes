@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('users.api.routers')),
     path("api/", include('categories.api.routers')),
+    path("api/", include('products.api.routers')),
     path('docs/', schema_view.with_ui('swagger',
          cache_timeout=0), name='schema-swager-view'),
     path("readocs/", schema_view.with_ui('redoc',
