@@ -30,6 +30,7 @@ THRID_PARTY_APPS = [
     'rest_framework',
     'corsheaders',
     'drf_yasg',
+    'django_filters'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + MY_APPS + THRID_PARTY_APPS

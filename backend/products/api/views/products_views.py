@@ -1,5 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework import status
 from products.api.serializer.product_serializer import ProductSerializer
@@ -10,6 +11,8 @@ class ProductViewSetApi(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category', 'is_active']
     
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
