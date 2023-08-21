@@ -23,6 +23,7 @@ DJANGO_APPS = [
 MY_APPS = [
     'users',
     'categories',
+    'products'
 ]
 
 THRID_PARTY_APPS = [
