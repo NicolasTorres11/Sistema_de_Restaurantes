@@ -1,4 +1,4 @@
-import { BASE_API } from "../utils";
+import { BASE_API } from "../utils/constants";
 
 export async function getProductsApi() {
   try {
