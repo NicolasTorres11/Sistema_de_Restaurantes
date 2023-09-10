@@ -1,0 +1,32 @@
+.table-product-admin{
+    color: black !important;
+  font-weight: bold;
+  background-color: #deebff !important;
+  background-image: linear-gradient(340deg, #deebff 0%, #deebff 74%) !important;
+
+  td {
+    .ui.image {
+      width: 100px;
+      height: 60px;
+    }
+    &.status {
+      .icon {
+        &.close {
+          color: #fe4334 !important;
+        }
+
+        &.check {
+          color: #60f933 !important;
+        }
+
+        &.edit {
+          color: #173c99 !important;
+        }
+
+        &.delete {
+          color: #fe4334 !important;
+        }
+      }
+    }
+  }
+}

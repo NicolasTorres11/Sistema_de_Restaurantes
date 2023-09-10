@@ -49,7 +49,7 @@ export function UserAdmin() {
   };
 
   return (
-    <>
+    <div>
       <HeaderPage
         title="Usuarios"
         btnTitle="Agregar Usuario"
@@ -77,6 +77,6 @@ export function UserAdmin() {
         children={ContentModal}
         onClose={OpenCloseModal}
       />
-    </>
+    </div>
   );
 }
